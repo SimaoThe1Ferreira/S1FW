@@ -23,6 +23,7 @@ let cell0
 let cell1
 let cell2
 let cell3
+document.body.addEventListener("keydown", focus)
 document.body.style.color = white
 document.body.style.fontSize = large
 document.body.style.fontFamily = monospace
@@ -30,6 +31,14 @@ document.body.style.background = black
 document.body.style.margin = unset
 create_standart_row()
 document.body.appendChild(table0)
+function clear() {
+	document.body.innerHTML = ""
+	table0 = document.createElement("table")
+	document.body.appendChild(table0)
+}
+function focus() {
+	text_box0.focus()
+}
 function create_standart_row() {
         text_box0 = document.createElement("input")
         row0 = table0.insertRow(-1)
@@ -89,8 +98,7 @@ function enter_command() {
 						counter2++
 					}
 					counter0++
-				}
-				else {
+				} else {
 					more_than_3_args = true
 					break
 				}
@@ -110,16 +118,14 @@ function enter_command() {
 					case "help":
 						if (parameters[1] === undefined) {
 							cell4.innerHTML = 'Try:<br>-> "ls" to show the downloadable files<br>-> "download" followed by the file name to download it'
-						}
-						else {
+						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
 						break
 					case "ls":
 						if (parameters[1] === undefined) {
 							cell4.innerHTML = "POS.zip PTE.zip"
-						}
-						else {
+						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
 						break
@@ -139,8 +145,25 @@ function enter_command() {
 							link.download = parameters[1]
 							link.click()
 							link.remove()
+						} else {
+							cell4.innerHTML = msg_comand_not_found
 						}
-						else {
+						break
+					case "clear":
+						if(parameters[1] === undefined) {
+							clear()
+						} else {
+							cell4.innerHTML = msg_comand_not_found
+						}
+						break
+					case "save":
+						if(parameters[2] === undefined && parameters[1] !== undefined) {
+							let form0 = document.createElement("form")
+							form0.method = "post"
+							document.body.appendChild(form0)
+							form0.submit()
+							form0.remove()
+						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
 						break
@@ -172,9 +195,17 @@ function enter_command() {
 			break
 		default:
 			commands_list[0] = text_box0.value
+			if(event.key !== "Backspace") {
+				commands_list[0] += event.key
+			} else {
+				commands_list[0] = commands_list[0].substring(0, commands_list[0].length - 1)
+			}
 			pointer0 = 0
 	}
 }
 </script>
 </body>
 </html>
+<?php
+	if(
+?>
