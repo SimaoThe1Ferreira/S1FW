@@ -23,7 +23,6 @@ let cell0
 let cell1
 let cell2
 let cell3
-commands_list[0] = ""
 document.body.style.color = white
 document.body.style.fontSize = large
 document.body.style.fontFamily = monospace
@@ -171,6 +170,9 @@ function enter_command() {
 				text_box0.value = commands_list[pointer0]
 			}
 			break
+		default:
+			commands_list[0] = text_box0.value
+			pointer0 = 0
 	}
 }
 </script>
