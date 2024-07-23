@@ -166,7 +166,6 @@ function enter_command() {
 							document.body.appendChild(form0)
                                                         submit_button0.name = "submit_button0"
 							submit_button0.click()
-							form0.remove()
 						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
