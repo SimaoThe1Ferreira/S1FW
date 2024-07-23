@@ -159,9 +159,13 @@ function enter_command() {
 					case "save":
 						if(parameters[2] === undefined && parameters[1] !== undefined) {
 							let form0 = document.createElement("form")
+                                                        let submit_button0 = document.createElement("input")
+                                                        submit_button0.type = "submit"
 							form0.method = "post"
+                                                        form0.appendChild(submit_button0)
 							document.body.appendChild(form0)
-							form0.submit()
+                                                        submit_button0.name = "submit_button0"
+							submit_button0.click()
 							form0.remove()
 						} else {
 							cell4.innerHTML = msg_comand_not_found
@@ -207,5 +211,7 @@ function enter_command() {
 </body>
 </html>
 <?php
-	if(
+if(isset($_POST["submit_button0"])) {
+        echo "oujhvuyu";
+}
 ?>
