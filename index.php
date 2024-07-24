@@ -18,6 +18,9 @@ if(isset($_POST["submit_button0"])) {
         try {
                 $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
                 echo "you are connected";
+                $sql = "INSERT INTO data0 (data0) VALUES ('Spongebob')";
+                mysqli_query($conn, $sql);
+                mysqli_close($conn);
         }
         catch(mysqli_sql_exception) {
                 echo "could not connect";
