@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="text/html">
 <title>SimaoThe1Ferreira</title>
 </head>
 <body>
@@ -11,6 +12,7 @@
 </html>
 <?php
 if(isset($_POST["submit_button0"])) {
+        //header('Content-Type: text/html; charset=utf-8');
         $db_server = "localhost";
         $db_user = "root";
         $db_pass = "";

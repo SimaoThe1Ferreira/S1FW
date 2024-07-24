@@ -28,7 +28,6 @@ none = "none"
 one_hundred = "100%"
 eigth_pixels = "8px"
 table0 = document.createElement("table")
-document.body.addEventListener("keydown", focus)
 document.body.style.color = white
 document.body.style.fontSize = large
 document.body.style.fontFamily = monospace
@@ -40,9 +39,6 @@ function clear() {
 	document.body.innerHTML = ""
 	table0 = document.createElement("table")
 	document.body.appendChild(table0)
-}
-function focus() {
-	text_box0.focus()
 }
 function create_standart_row() {
         text_box0 = document.createElement("input")
@@ -173,8 +169,7 @@ function enter_command() {
 						}
 						break
 					case "save":
-                                                console.log(parameters[1])
-						if(parameters[1] !== undefined &&  parameters[2] === undefined && parameters[1] !== "") {
+						if(counter1 === 1 && parameters[1] !== "") {
 							let form0
                                                         let submit_button0
                                                         form0 = document.createElement("form")
@@ -186,6 +181,13 @@ function enter_command() {
 							document.body.appendChild(form0)
                                                         submit_button0.name = "submit_button0"
 							submit_button0.click()
+						} else {
+							cell4.innerHTML = msg_comand_not_found
+						}
+						break
+                                        case "edit":
+                                                if(counter1 === 1 && parameters[1] !== "") {
+                                                        
 						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
