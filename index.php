@@ -245,8 +245,13 @@ if(isset($_POST["submit_button0"])) {
         $db_server = "localhost";
         $db_user = "root";
         $db_pass = "";
-        $db_pass = "test";
-        $conn = mysqli_connect($db_server, $db_user);
-
+        $db_name = "test";
+        try {
+                $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+                echo "you are connected";
+        }
+        catch(mysqli_sql_exception) {
+                echo "could not connect";
+        }
 }
 ?>
