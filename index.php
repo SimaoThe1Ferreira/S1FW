@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SimaoThe1Ferreira</title>
 </head>
 <body>
@@ -61,6 +63,8 @@ function create_standart_row() {
         cell2.innerHTML = "$"
         cell3.appendChild(text_box0)
         cell3.style.width = one_hundred
+        text_box0.name = "text_box0"
+        text_box0.title = "text_box0"
         text_box0.addEventListener("keydown", enter_command)
         text_box0.autofocus = true
         text_box0.style.outline = none
@@ -103,8 +107,8 @@ function enter_command() {
 					break
 				}
 			} while (counter0 < text_box0.value.length)
-			parameters[counter1] = text_box0.value.substring(counter2, counter0)
-			if (!more_than_3_args) {
+		        parameters[counter1] = text_box0.value.substring(counter2, counter0)
+                        if (!more_than_3_args) {
 				if (number_typed_commands < 31) {
 					number_typed_commands++
 				}
@@ -116,14 +120,14 @@ function enter_command() {
 				commands_list[0] = ""
 				switch (parameters[0]) {
 					case "help":
-						if (parameters[1] === undefined) {
-							cell4.innerHTML = 'Try:<br>-> "ls" to show the downloadable files<br>-> "download" followed by the file name to download it'
+						if (counter1 === 0) {
+							cell4.innerHTML = 'Try:<br>-> "ls" to show the downloadable files<br>-> "download" followed by the file name to download it<br>-> "clear" to clear the screen'
 						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
 						break
 					case "ls":
-						if (parameters[1] === undefined) {
+						if (counter1 === 0) {
 							cell4.innerHTML = "POS.zip PTE.zip"
 						} else {
 							cell4.innerHTML = msg_comand_not_found
@@ -139,7 +143,7 @@ function enter_command() {
 							default:
 								exists0 = false
 						}
-						if (parameters[2] === undefined && exists0 === true) {
+						if (counter1 === 1 && exists0 === true) {
 							let link = document.createElement('a');
 							link.href = parameters[1]
 							link.download = parameters[1]
@@ -150,14 +154,15 @@ function enter_command() {
 						}
 						break
 					case "clear":
-						if(parameters[1] === undefined) {
+						if(counter1 === 0) {
 							clear()
 						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
 						break
 					case "save":
-						if(parameters[2] === undefined && parameters[1] !== undefined) {
+                                                console.log(parameters[1])
+						if(parameters[1] !== undefined &&  parameters[2] === undefined && parameters[1] !== "") {
 							let form0 = document.createElement("form")
                                                         let submit_button0 = document.createElement("input")
                                                         submit_button0.type = "submit"
@@ -186,6 +191,8 @@ function enter_command() {
 				        pointer0++
                                 } while(commands_list[pointer0] === commands_list[pointer0 + 1])
 				text_box0.value = commands_list[pointer0]
+                                event.preventDefault()
+                                text_box0.setSelectionRange(text_box0.value.length, text_box0.value.length)
 			}
 			break
 		case 40: // down arrow key
