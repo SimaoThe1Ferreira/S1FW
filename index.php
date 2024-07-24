@@ -7,24 +7,36 @@
 </head>
 <body>
 <script>
-let commands_list = new Array(32)
-let number_typed_commands = 0
-let pointer0 = 0
-let unset = "unset"
-let white = "white"
-let large = "large"
-let monospace = "monospace"
-let black = "black"
-let none = "none"
-let one_hundred = "100%"
-let eigth_pixels = "8px"
-let table0 = document.createElement("table")
+let commands_list
+let number_typed_commands
+let pointer0
+let unset
+let white
+let large
+let monospace
+let black
+let none
+let one_hundred
+let eigth_pixels
+let table0
 let text_box0
 let row0
 let cell0
 let cell1
 let cell2
 let cell3
+commands_list = new Array(32)
+number_typed_commands = 0
+pointer0 = 0
+unset = "unset"
+white = "white"
+large = "large"
+monospace = "monospace"
+black = "black"
+none = "none"
+one_hundred = "100%"
+eigth_pixels = "8px"
+table0 = document.createElement("table")
 document.body.addEventListener("keydown", focus)
 document.body.style.color = white
 document.body.style.fontSize = large
@@ -82,14 +94,22 @@ function create_standart_row() {
 function enter_command() {
 	switch (event.keyCode) {
 		case 13: // enter key
-			let counter0 = number_typed_commands
-			let parameters = new Array(3)
-			let counter1 = 0
-			let counter2 = 0
-			let more_than_3_args = false
-			let msg_comand_not_found = "Command not found"
-			let row1 = table0.insertRow(-1)
-			let cell4 = row1.insertCell(-1)
+			let counter0
+			let parameters
+			let counter1
+			let counter2
+			let more_than_3_args
+			let msg_comand_not_found
+			let row1
+			let cell4
+                        counter0 = number_typed_commands
+                        parameters = new Array(3)
+                        counter1 = 0
+                        counter2 = 0
+                        more_than_3_args = false
+                        msg_comand_not_found = "Command not found"
+                        row1 = table0.insertRow(-1)
+                        cell4 = row1.insertCell(-1)
 			pointer0 = 0
                         cell3.innerHTML = text_box0.value
 			cell4.colSpan = "5"
@@ -144,7 +164,8 @@ function enter_command() {
 								exists0 = false
 						}
 						if (counter1 === 1 && exists0 === true) {
-							let link = document.createElement('a');
+							let link
+                                                        link = document.createElement('a')
 							link.href = parameters[1]
 							link.download = parameters[1]
 							link.click()
@@ -163,8 +184,11 @@ function enter_command() {
 					case "save":
                                                 console.log(parameters[1])
 						if(parameters[1] !== undefined &&  parameters[2] === undefined && parameters[1] !== "") {
-							let form0 = document.createElement("form")
-                                                        let submit_button0 = document.createElement("input")
+							let form0
+                                                        let submit_button0
+                                                        form0 = document.createElement("form")
+                                                        submit_button0 = document.createElement
+                                                        ("input")
                                                         submit_button0.type = "submit"
 							form0.method = "post"
                                                         form0.appendChild(submit_button0)
@@ -218,6 +242,11 @@ function enter_command() {
 </html>
 <?php
 if(isset($_POST["submit_button0"])) {
-        echo "oujhvuyu";
+        $db_server = "localhost";
+        $db_user = "root";
+        $db_pass = "";
+        $db_pass = "test";
+        $conn = mysqli_connect($db_server, $db_user);
+
 }
 ?>
