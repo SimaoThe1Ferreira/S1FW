@@ -35,6 +35,10 @@ document.body.style.background = black
 document.body.style.margin = unset
 create_standart_row()
 document.body.appendChild(table0)
+function autoResize() {
+        this.style.height = 'auto'; // Reset height to auto to get accurate scrollHeight
+        this.style.height = this.scrollHeight + 'px'; // Set height equal to scrollHeight
+    }
 function clear() {
 	document.body.innerHTML = ""
 	table0 = document.createElement("table")
@@ -187,7 +191,24 @@ function enter_command() {
 						break
                                         case "edit":
                                                 if(counter1 === 1 && parameters[1] !== "") {
-                                                        
+                                                        let multiline_textbox0
+                                                        multiline_textbox0 = document.createElement("textarea")
+                                                        multiline_textbox0.addEventListener('input', autoResize, false)
+                                                        multiline_textbox0.style.resize = "none"
+                                                        multiline_textbox0.style.display = "block"
+                                                        multiline_textbox0.style.overflow = "hidden"
+                                                        multiline_textbox0.style.width = one_hundred
+                                                        multiline_textbox0.style.background = black
+                                                        multiline_textbox0.style.outline = none
+                                                        multiline_textbox0.style.border = none
+                                                        multiline_textbox0.style.padding = unset
+                                                        multiline_textbox0.style.margin = unset
+                                                        multiline_textbox0.style.color = white
+                                                        multiline_textbox0.style.fontSize = large
+                                                        multiline_textbox0.focus()
+                                                        cell4.appendChild(multiline_textbox0)
+                                                        multiline_textbox0.name = "multiline_textbox0"
+                                                        multiline_textbox0.title = "multiline_textbox0"
 						} else {
 							cell4.innerHTML = msg_comand_not_found
 						}
