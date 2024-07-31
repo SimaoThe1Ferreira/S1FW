@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang = "en">
-<head>
-<meta content = "text/html" charset = "UTF-8">
-<meta content = "text/javascript">
-<meta name = "viewport" content="width=device-width, initial-scale=1.0">
-<title>SimaoThe1Ferreira</title>
-</head>
-<body>
-<script src="program.js"></script>
-</body>
+	<head>
+		<meta content = "text/html" charset = "UTF-8">
+		<meta content = "text/javascript">
+		<meta name = "viewport" content="width=device-width, initial-scale=1.0">
+		<title>SimaoThe1Ferreira</title>
+	</head>
+	<body>
+		<script src="program.js"></script>
+	</body>
 </html>
 <?php
 if(isset($_POST["submit_button0"])) {
