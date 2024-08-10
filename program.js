@@ -65,7 +65,52 @@ function table0_click() {
 	cells[cursor_row][cursor_column].focus()
 }
 function input() {
-	if (cursor_column - 1 < length1) {
-		cursor_column++
-	}
+        console.log(event.key)
+        switch(event.key) {
+                case 'Enter':
+                        break
+                case 'ArrowUp':
+                        break
+                case 'ArrowDown':
+                        break
+                case 'ArrowLeft':
+                        if (cursor_column !== 0) {
+                                cursor_column--
+                                cells[cursor_row][cursor_column].focus()
+                        } else {
+                                if(cursor_row !== 0) {
+                                        cursor_column = length1 - 1
+                                        cursor_row--
+                                        cells[cursor_row][cursor_column].focus()
+                                }
+                        }
+                        break
+                case 'ArrowRight':
+                        if (cursor_column !== length1 - 1) {
+                                cursor_column++
+                                cells[cursor_row][cursor_column].focus()
+                        } else {
+                                if(cursor_row !== length0) {
+                                        cursor_column = 0
+                                        cursor_row++
+                                        cells[cursor_row][cursor_column].focus()
+                                }
+                        }
+                        break
+                case 'Delete':
+                        break
+        }
+        console.log(event.keyCode)
+        if(event.code < 127 && event.code > 31) {
+                if (cursor_column !== length1 - 1) {
+                        cursor_column++
+                        cells[cursor_row][cursor_column].focus()
+                } else {
+                        if(cursor_row !== length0) {
+                                cursor_column = 0
+                                cursor_row++
+                                cells[cursor_row][cursor_column].focus()
+                        }
+                }
+        }
 }
