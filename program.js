@@ -151,9 +151,7 @@ function create_standart_row() {
 								break
 							case "clear":
 								if(counter1 === 0) {
-									document.body.innerHTML = ""
-									table0 = document.createElement("table")
-									document.body.appendChild(table0)
+									table0.innerHTML = ""
 								} else {
 									cell4.innerHTML = msg_comand_not_found
 								}
@@ -181,7 +179,10 @@ function create_standart_row() {
 								break
                 	       	                	case "edit":
                 	        	                       	if(counter1 === 1 && parameters[1] !== "") {
-                	        	                               	/*let multiline_textbox0
+									table0.innerHTML = ""
+									row0 = table0.insertRow(-1)
+									cell0 = row0.insertCell(-1)
+                	        	                               	let multiline_textbox0
                 	        	                               	multiline_textbox0 = document.createElement("textarea")
                 	        	                               	multiline_textbox0.addEventListener('keydown', function() {
 										this.style.height = 'auto'
@@ -194,8 +195,6 @@ function create_standart_row() {
 											create_standart_row()
                                                                         		text_box0.focus()
 										}
-										console.log(event.key)
-										console.log(multiline_textbox0.value)
 									}, false)
                 	        	                               	multiline_textbox0.style.resize = none
                 	        	                               	multiline_textbox0.style.minHeigth = "1px"
@@ -207,22 +206,18 @@ function create_standart_row() {
                 	        	                                multiline_textbox0.style.width = one_hundred
                         	                                	multiline_textbox0.style.background = black
                	         	                                	multiline_textbox0.style.outline = none
-               	         	                                	multiline_textbox0.style.border = "1px solid white"
+               	         	                                	multiline_textbox0.style.border = "none"
                	         	                                	multiline_textbox0.style.padding = unset
                	         	                                	multiline_textbox0.style.margin = unset
                	         	                                	multiline_textbox0.style.color = white
                	         	                                	multiline_textbox0.style.fontSize = large
                	                                                	multiline_textbox0.style.msOverflowStyle = none
                	                                                	multiline_textbox0.style.scrollbarWidth = none
-               	         	                                	cell4.appendChild(multiline_textbox0)
+               	         	                                	cell0.appendChild(multiline_textbox0)
               	         	                                	multiline_textbox0.name = "multiline_textbox0"
               	         	                                	multiline_textbox0.title = "multiline_textbox0"
-									let eventt = new KeyboardEvent("keydown", {
-										key: 'a',
-										code: 'KeyA',
-										bubbles: true
-									});
-									multiline_textbox0.dispatchEvent(eventt)*/
+									multiline_textbox0.focus()
+									event.preventDefault()
 								} else {
 									cell4.innerHTML = msg_comand_not_found
 									create_standart_row()
