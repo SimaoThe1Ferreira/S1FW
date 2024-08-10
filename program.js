@@ -181,12 +181,23 @@ function create_standart_row() {
                 	        	                       	if(counter1 === 1 && parameters[1] !== "") {
 									table0.innerHTML = ""
 									row0 = table0.insertRow(-1)
+                                                                        row1 = table0.insertRow(-1)
+                                                                        row0.style.background = "white"
+                                                                        row0.style.color = "black"
 									cell0 = row0.insertCell(-1)
+                                                                        cell1 = row0.insertCell(-1)
+                                                                        cell2 = row0.insertCell(-1)
+                                                                        cell0.innerHTML = "Text editor"
+                                                                        cell0.style.width = "33%"
+                                                                        cell1.innerHTML = parameters[1]
+                                                                        cell1.style.textAlign = "center"
+                                                                        cell1.style.width = "33%"
+                                                                        cell2.style.width = "33%"
+                                                                        cell3 = row1.insertCell(-1)
+                                                                        cell3.colSpan = 3
                 	        	                               	let multiline_textbox0
                 	        	                               	multiline_textbox0 = document.createElement("textarea")
                 	        	                               	multiline_textbox0.addEventListener('keydown', function() {
-										this.style.height = 'auto'
-        									this.style.height = this.scrollHeight + 'px'
 										if (event.ctrlKey && event.key === 'x') {
 											event.preventDefault()
 											document.body.innerHTML = ""
@@ -196,14 +207,12 @@ function create_standart_row() {
                                                                         		text_box0.focus()
 										}
 									}, false)
+                                                                        multiline_textbox0.style.height = (window.innerHeight - 27) + "px"
                 	        	                               	multiline_textbox0.style.resize = none
                 	        	                               	multiline_textbox0.style.minHeigth = "1px"
                 	        	                               	multiline_textbox0.style.overflow = "auto"
-									multiline_textbox0.style.display = "flex"
-									multiline_textbox0.style.webkitBoxSizing = "border-box"
 									multiline_textbox0.style.mozBoxSizing = "border-box"
 									multiline_textbox0.style.boxSizing = "border-box"
-                	        	                                multiline_textbox0.style.width = one_hundred
                         	                                	multiline_textbox0.style.background = black
                	         	                                	multiline_textbox0.style.outline = none
                	         	                                	multiline_textbox0.style.border = "none"
@@ -212,8 +221,9 @@ function create_standart_row() {
                	         	                                	multiline_textbox0.style.color = white
                	         	                                	multiline_textbox0.style.fontSize = large
                	                                                	multiline_textbox0.style.msOverflowStyle = none
-               	                                                	multiline_textbox0.style.scrollbarWidth = none
-               	         	                                	cell0.appendChild(multiline_textbox0)
+                                                                        multiline_textbox0.style.scrollbarWidth = none
+                                                                        multiline_textbox0.cols = window.innerWidth / 9
+               	         	                                	cell3.appendChild(multiline_textbox0)
               	         	                                	multiline_textbox0.name = "multiline_textbox0"
               	         	                                	multiline_textbox0.title = "multiline_textbox0"
 									multiline_textbox0.focus()
