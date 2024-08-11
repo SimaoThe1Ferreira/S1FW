@@ -121,5 +121,10 @@ function enter_command() {
 				cells[cursor_row][cursor_column].focus()
 			}
 		}
+		event.preventDefault()
+		writing_limit++
+	} else {
+		event.preventDefault()
+		writing_limit++
 	}
 }
