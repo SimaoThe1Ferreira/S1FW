@@ -100,6 +100,8 @@ function input() {
 			break
 		case 'Delete':
 			break
+		case 'Backspace':
+			break
 	}
 	if(event.key.length < 2) {
 		if (cursor_column !== length1 - 1) {
