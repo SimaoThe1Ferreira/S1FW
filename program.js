@@ -52,6 +52,7 @@ create_standard_row(0)
 function create_standard_row(row_position) {
 	print_msg("SimaoThe1Ferreira", "green", row_position, 0)
 	print_msg(":$", white, row_position, 17)
+        cells[cursor_row][cursor_column].contentEditable = true
 	cells[cursor_row][cursor_column].focus()
 }
 function print_msg(msg, color, row, column) {
@@ -75,11 +76,13 @@ function enter_command() {
 			break
 		case 'ArrowLeft':
 			if (cursor_column !== 0 && cursor_column !== writing_limit_left) {
+                                cells[cursor_row][cursor_column].contentEditable = false
 				cursor_column--
 				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			} else {
 				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
+                                        cells[cursor_row][cursor_column].contentEditable = false
 					cursor_column = length1 - 1
 					cursor_row--
 					cells[cursor_row][cursor_column].contentEditable = true
@@ -89,32 +92,38 @@ function enter_command() {
 			break
 		case 'ArrowRight':
 			if (cursor_column !== length1 - 1 && cursor_column !== writing_limit_right) {
+                                cells[cursor_row][cursor_column].contentEditable = false
 				cursor_column++
 				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			} else {
 				if(cursor_row !== length0 && cursor_column !== writing_limit_right) {
+                                        cells[cursor_row][cursor_column].contentEditable = false
 					cursor_column = 0
 					cursor_row++
-				cells[cursor_row][cursor_column].contentEditable = true
+				        cells[cursor_row][cursor_column].contentEditable = true
 					cells[cursor_row][cursor_column].focus()
 				}
 			}
 			break
 		case 'Delete':
+                        
 			break
 		case 'Backspace':
+
 			break
 	}
 	if(event.key.length < 2) {
 		if (cursor_column !== length1 - 1) {
 			cells[cursor_row][cursor_column].contentEditable = false
+                        cells[cursor_row][cursor_column].innerHTML = event.key
 			cursor_column++
 			cells[cursor_row][cursor_column].contentEditable = true
 			cells[cursor_row][cursor_column].focus()
 		} else {
 			if(cursor_row !== length0) {
 				cells[cursor_row][cursor_column].contentEditable = false
+                                cells[cursor_row][cursor_column].innerHTML = event.key
 				cursor_column = 0
 				cursor_row++
 				cells[cursor_row][cursor_column].contentEditable = true
@@ -122,9 +131,6 @@ function enter_command() {
 			}
 		}
 		event.preventDefault()
-		writing_limit_rigth++
-	} else {
-		event.preventDefault()
-		writing_limit_rigth++
+		writing_limit_right++
 	}
 }
