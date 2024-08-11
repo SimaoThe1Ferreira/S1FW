@@ -67,7 +67,6 @@ function table0_click() {
 	cells[cursor_row][cursor_column].focus()
 }
 function input() {
-	//console.log(event.key)
 	switch(event.key) {
 		case 'Enter':
 			break
@@ -102,8 +101,7 @@ function input() {
 		case 'Delete':
 			break
 	}
-	//console.log(event.keyCode)
-	if(event.code < 127 && event.code > 31) {
+	if(event.key.length < 2) {
 		if (cursor_column !== length1 - 1) {
 			cursor_column++
 			cells[cursor_row][cursor_column].focus()
