@@ -13,6 +13,8 @@ let none = "none"
 let one_hundred = "100%"
 let cursor_row = 0
 let cursor_column = 19
+let writing_limit_right = 19
+let writing_limit_left = 19
 table0.style.border = none
 table0.style.width = one_hundred
 table0.style.borderCollapse = "collapse"
@@ -65,52 +67,52 @@ function table0_click() {
 	cells[cursor_row][cursor_column].focus()
 }
 function input() {
-        console.log(event.key)
-        switch(event.key) {
-                case 'Enter':
-                        break
-                case 'ArrowUp':
-                        break
-                case 'ArrowDown':
-                        break
-                case 'ArrowLeft':
-                        if (cursor_column !== 0) {
-                                cursor_column--
-                                cells[cursor_row][cursor_column].focus()
-                        } else {
-                                if(cursor_row !== 0) {
-                                        cursor_column = length1 - 1
-                                        cursor_row--
-                                        cells[cursor_row][cursor_column].focus()
-                                }
-                        }
-                        break
-                case 'ArrowRight':
-                        if (cursor_column !== length1 - 1) {
-                                cursor_column++
-                                cells[cursor_row][cursor_column].focus()
-                        } else {
-                                if(cursor_row !== length0) {
-                                        cursor_column = 0
-                                        cursor_row++
-                                        cells[cursor_row][cursor_column].focus()
-                                }
-                        }
-                        break
-                case 'Delete':
-                        break
-        }
-        console.log(event.keyCode)
-        if(event.code < 127 && event.code > 31) {
-                if (cursor_column !== length1 - 1) {
-                        cursor_column++
-                        cells[cursor_row][cursor_column].focus()
-                } else {
-                        if(cursor_row !== length0) {
-                                cursor_column = 0
-                                cursor_row++
-                                cells[cursor_row][cursor_column].focus()
-                        }
-                }
-        }
+	//console.log(event.key)
+	switch(event.key) {
+		case 'Enter':
+			break
+		case 'ArrowUp':
+			break
+		case 'ArrowDown':
+			break
+		case 'ArrowLeft':
+			if (cursor_column !== 0 && cursor_column !== writing_limit_left) {
+				cursor_column--
+				cells[cursor_row][cursor_column].focus()
+			} else {
+				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
+					cursor_column = length1 - 1
+					cursor_row--
+					cells[cursor_row][cursor_column].focus()
+				}
+			}
+			break
+		case 'ArrowRight':
+			if (cursor_column !== length1 - 1 && cursor_column !== writing_limit_right) {
+				cursor_column++
+				cells[cursor_row][cursor_column].focus()
+			} else {
+				if(cursor_row !== length0 && cursor_column !== writing_limit_right) {
+					cursor_column = 0
+					cursor_row++
+					cells[cursor_row][cursor_column].focus()
+				}
+			}
+			break
+		case 'Delete':
+			break
+	}
+	//console.log(event.keyCode)
+	if(event.code < 127 && event.code > 31) {
+		if (cursor_column !== length1 - 1) {
+			cursor_column++
+			cells[cursor_row][cursor_column].focus()
+		} else {
+			if(cursor_row !== length0) {
+				cursor_column = 0
+				cursor_row++
+				cells[cursor_row][cursor_column].focus()
+			}
+		}
+	}
 }
