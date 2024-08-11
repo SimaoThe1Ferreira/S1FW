@@ -76,11 +76,13 @@ function enter_command() {
 		case 'ArrowLeft':
 			if (cursor_column !== 0 && cursor_column !== writing_limit_left) {
 				cursor_column--
+				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			} else {
 				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
 					cursor_column = length1 - 1
 					cursor_row--
+					cells[cursor_row][cursor_column].contentEditable = true
 					cells[cursor_row][cursor_column].focus()
 				}
 			}
@@ -88,11 +90,13 @@ function enter_command() {
 		case 'ArrowRight':
 			if (cursor_column !== length1 - 1 && cursor_column !== writing_limit_right) {
 				cursor_column++
+				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			} else {
 				if(cursor_row !== length0 && cursor_column !== writing_limit_right) {
 					cursor_column = 0
 					cursor_row++
+				cells[cursor_row][cursor_column].contentEditable = true
 					cells[cursor_row][cursor_column].focus()
 				}
 			}
