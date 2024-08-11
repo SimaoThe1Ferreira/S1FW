@@ -36,7 +36,6 @@ do {
 	do {
 		cells[counter0][counter1] = document.createElement("td")
 		cells[counter0][counter1].style.outline = none
-		cells[counter0][counter1].contentEditable = true
 		cells[counter0][counter1].addEventListener("keydown", enter_command)
 		cells[counter0][counter1].style.margin = unset
 		cells[counter0][counter1].style.padding = unset
@@ -111,6 +110,7 @@ function enter_command() {
 			if(cursor_row !== length0) {
 				cursor_column = 0
 				cursor_row++
+				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			}
 		}
