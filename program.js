@@ -37,7 +37,7 @@ do {
 		cells[counter0][counter1] = document.createElement("td")
 		cells[counter0][counter1].style.outline = none
 		cells[counter0][counter1].contentEditable = true
-		cells[counter0][counter1].addEventListener("keydown", input)
+		cells[counter0][counter1].addEventListener("keydown", enter_command)
 		cells[counter0][counter1].style.margin = unset
 		cells[counter0][counter1].style.padding = unset
 		cells[counter0][counter1].style.border = none
