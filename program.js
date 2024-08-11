@@ -122,9 +122,9 @@ function enter_command() {
 			}
 		}
 		event.preventDefault()
-		writing_limit++
+		writing_limit_rigth++
 	} else {
 		event.preventDefault()
-		writing_limit++
+		writing_limit_rigth++
 	}
 }
