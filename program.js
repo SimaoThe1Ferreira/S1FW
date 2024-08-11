@@ -104,10 +104,13 @@ function enter_command() {
 	}
 	if(event.key.length < 2) {
 		if (cursor_column !== length1 - 1) {
+			cells[cursor_row][cursor_column].contentEditable = false
 			cursor_column++
+			cells[cursor_row][cursor_column].contentEditable = true
 			cells[cursor_row][cursor_column].focus()
 		} else {
 			if(cursor_row !== length0) {
+				cells[cursor_row][cursor_column].contentEditable = false
 				cursor_column = 0
 				cursor_row++
 				cells[cursor_row][cursor_column].contentEditable = true
