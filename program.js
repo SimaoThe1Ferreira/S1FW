@@ -49,10 +49,10 @@ do {
 } while(counter0 < length0)
 document.body.appendChild(table0)
 table0.addEventListener("click", table0_click)
-create_standard_row()
-function create_standard_row() {
-	print_msg("SimaoThe1Ferreira", "green", 0, 0)
-	print_msg(":$", white, 0, 17)
+create_standard_row(0)
+function create_standard_row(row_position) {
+	print_msg("SimaoThe1Ferreira", "green", row_position, 0)
+	print_msg(":$", white, row_position, 17)
 	cells[cursor_row][cursor_column].focus()
 }
 function print_msg(msg, color, row, column) {
