@@ -66,7 +66,7 @@ function print_msg(msg, color, row, column) {
 function table0_click() {
 	cells[cursor_row][cursor_column].focus()
 }
-function input() {
+function enter_command() {
 	switch(event.key) {
 		case 'Enter':
 			break
