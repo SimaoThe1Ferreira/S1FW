@@ -15,6 +15,7 @@ let cursor_row = 0
 let cursor_column = 19
 let writing_limit_right = 19
 let writing_limit_left = 19
+let writing_limit_row = 0
 table0.style.border = none
 table0.style.width = one_hundred
 table0.style.borderCollapse = "collapse"
@@ -47,7 +48,7 @@ do {
 	counter0++
 } while(counter0 < length0)
 document.body.appendChild(table0)
-table0.addEventListener("click", table0_click)
+document.body.addEventListener("click", body_click)
 create_standard_row(0)
 function create_standard_row(row_position) {
 	print_msg("SimaoThe1Ferreira", "green", row_position, 0)
@@ -63,7 +64,7 @@ function print_msg(msg, color, row, column) {
 		counter3++
 	} while(counter3 < msg.length)
 }
-function table0_click() {
+function body_click() {
 	cells[cursor_row][cursor_column].focus()
 }
 function enter_command() {
@@ -75,13 +76,13 @@ function enter_command() {
 		case 'ArrowDown':
 			break
 		case 'ArrowLeft':
-			if (cursor_column !== 0 && cursor_column !== writing_limit_left) {
+			if (cursor_column !== 0 && cursor_column !== writing_limit_left || cursor_row !== 0 && writing_limit_row !== 0) {
                                 cells[cursor_row][cursor_column].contentEditable = false
 				cursor_column--
 				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			} else {
-				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
+				if(cursor_row !== 0 && cursor_column !== writing_limit_left || cursor_row !== 0 && writing_limit_row !== 0) {
                                         cells[cursor_row][cursor_column].contentEditable = false
 					cursor_column = length1 - 1
 					cursor_row--
@@ -117,6 +118,12 @@ function enter_command() {
 				cursor_column--
 				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
+                                counter0 = cursor_column
+                                do {
+                                        cells[cursor_row][counter0].innerHTML = cells[cursor_row][counter0 + 1].innerHTML
+                                        counter0++
+                                } while (counter0 !== cursor_column + 1)
+                                writing_limit_right--
 			} else {
 				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
                                         cells[cursor_row][cursor_column].contentEditable = false
@@ -124,7 +131,13 @@ function enter_command() {
 					cursor_row--
 					cells[cursor_row][cursor_column].contentEditable = true
 					cells[cursor_row][cursor_column].focus()
-				}
+                                        counter0 = cursor_column
+                                        do {
+                                                cells[cursor_row][counter0].innerHTML = cells[cursor_row][counter0 + 1].innerHTML
+                                                counter0++
+                                        } while (counter0 !== cursor_column)
+                                        writing_limit_right--
+                                }
 			}
 			break
 	}
@@ -141,6 +154,7 @@ function enter_command() {
                                 cells[cursor_row][cursor_column].innerHTML = event.key
 				cursor_column = 0
 				cursor_row++
+                                writing_limit_row++
 				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
 			}
