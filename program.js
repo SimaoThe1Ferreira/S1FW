@@ -96,6 +96,7 @@ function enter_command() {
 				cursor_column++
 				cells[cursor_row][cursor_column].contentEditable = true
 				cells[cursor_row][cursor_column].focus()
+                                event.preventDefault()
 			} else {
 				if(cursor_row !== length0 && cursor_column !== writing_limit_right) {
                                         cells[cursor_row][cursor_column].contentEditable = false
@@ -103,6 +104,7 @@ function enter_command() {
 					cursor_row++
 				        cells[cursor_row][cursor_column].contentEditable = true
 					cells[cursor_row][cursor_column].focus()
+                                        event.preventDefault()
 				}
 			}
 			break
