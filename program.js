@@ -112,7 +112,20 @@ function enter_command() {
                         
 			break
 		case 'Backspace':
-
+                        if (cursor_column !== 0 && cursor_column !== writing_limit_left) {
+                                cells[cursor_row][cursor_column].contentEditable = false
+				cursor_column--
+				cells[cursor_row][cursor_column].contentEditable = true
+				cells[cursor_row][cursor_column].focus()
+			} else {
+				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
+                                        cells[cursor_row][cursor_column].contentEditable = false
+					cursor_column = length1 - 1
+					cursor_row--
+					cells[cursor_row][cursor_column].contentEditable = true
+					cells[cursor_row][cursor_column].focus()
+				}
+			}
 			break
 	}
 	if(event.key.length < 2) {
