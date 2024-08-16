@@ -48,8 +48,12 @@ do {
 	counter0++
 } while(counter0 < length0)
 document.body.appendChild(table0)
-document.body.addEventListener("click", body_click)
 create_standard_row(0)
+cells[length0 - 1][length1 - 1].style.background = white
+cells[length0 - 1][length1 - 1].addEventListener("click", focus_cursor)
+function focus_cursor() {
+        cells[cursor_row][cursor_column].focus()
+}
 function create_standard_row(row_position) {
 	print_msg("SimaoThe1Ferreira", "green", row_position, 0)
 	print_msg(":$", white, row_position, 17)
@@ -63,9 +67,6 @@ function print_msg(msg, color, row, column) {
 		cells[row][counter3 + column].style.color = color
 		counter3++
 	} while(counter3 < msg.length)
-}
-function body_click() {
-	cells[cursor_row][cursor_column].focus()
 }
 function enter_command() {
 	switch(event.key) {
