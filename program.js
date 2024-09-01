@@ -1,166 +1,99 @@
-let table0 = document.createElement("table")
-let length0 = Math.floor(window.innerHeight / 19)
-let length1 = Math.floor(window.innerWidth / 9)
-let rows = new Array(length0)
-let cells = new Array(length0)
-let counter0 = 0
-let unset = "unset"
+let text_box0 = document.createElement("input")
+let commands_list = new Array(32)
+let number_typed_commands = 0
+let pointer0 = 0
+document.body.appendChild(text_box0)
+text_box0.addEventListener("keydown", text_box0_keydown)
+text_box0.focus()
 let white = "white"
 let large = "large"
 let monospace = "monospace"
 let black = "black"
+let unset = "unset"
 let none = "none"
 let one_hundred = "100%"
-let cursor_row = 0
-let cursor_column = 19
-let writing_limit_right = 19
-let writing_limit_left = 19
-let writing_limit_row = 0
-table0.style.border = none
-table0.style.width = one_hundred
-table0.style.borderCollapse = "collapse"
 document.body.style.color = white
 document.body.style.fontSize = large
 document.body.style.fontFamily = monospace
 document.body.style.background = black
 document.body.style.margin = unset
-do {
-	rows[counter0] = document.createElement("tr")
-	rows[counter0].style.height = "19px"
-	table0.appendChild(rows[counter0])
-	counter0++
-} while(counter0 < length0)
-counter0 = 0
-do {
-	cells[counter0] = []
-	let counter1 = 0
-	do {
-		cells[counter0][counter1] = document.createElement("td")
-		cells[counter0][counter1].style.outline = none
-		cells[counter0][counter1].addEventListener("keydown", enter_command)
-		cells[counter0][counter1].style.margin = unset
-		cells[counter0][counter1].style.padding = unset
-		cells[counter0][counter1].style.border = none
-		cells[counter0][counter1].style.width = "9px"
-		rows[counter0].appendChild(cells[counter0][counter1])
-		counter1++
-	} while (counter1 < length1)
-	counter0++
-} while(counter0 < length0)
-document.body.appendChild(table0)
-create_standard_row(0)
-cells[length0 - 1][length1 - 1].style.background = white
-cells[length0 - 1][length1 - 1].addEventListener("click", focus_cursor)
-function focus_cursor() {
-        cells[cursor_row][cursor_column].focus()
-}
-function create_standard_row(row_position) {
-	print_msg("SimaoThe1Ferreira", "green", row_position, 0)
-	print_msg(":$", white, row_position, 17)
-        cells[cursor_row][cursor_column].contentEditable = true
-	cells[cursor_row][cursor_column].focus()
-}
-function print_msg(msg, color, row, column) {
-	let counter3 = 0
-	do {
-		cells[row][counter3 + column].innerHTML = msg[counter3]
-		cells[row][counter3 + column].style.color = color
-		counter3++
-	} while(counter3 < msg.length)
-}
-function enter_command() {
-	switch(event.key) {
-		case 'Enter':
-			break
-		case 'ArrowUp':
-			break
-		case 'ArrowDown':
-			break
-		case 'ArrowLeft':
-			if (cursor_column !== 0 && cursor_column !== writing_limit_left || cursor_row !== 0 && writing_limit_row !== 0) {
-                                cells[cursor_row][cursor_column].contentEditable = false
-				cursor_column--
-				cells[cursor_row][cursor_column].contentEditable = true
-				cells[cursor_row][cursor_column].focus()
-			} else {
-				if(cursor_row !== 0 && cursor_column !== writing_limit_left || cursor_row !== 0 && writing_limit_row !== 0) {
-                                        cells[cursor_row][cursor_column].contentEditable = false
-					cursor_column = length1 - 1
-					cursor_row--
-					cells[cursor_row][cursor_column].contentEditable = true
-					cells[cursor_row][cursor_column].focus()
+text_box0.style.color = white
+text_box0.style.fontSize = large
+text_box0.style.fontFamily = monospace
+text_box0.style.background = black
+text_box0.style.outline = none
+text_box0.style.margin = unset
+text_box0.style.padding = unset
+text_box0.style.border = "1px solid white"
+text_box0.style.width = one_hundred
+function text_box0_keydown() {
+	switch (event.key) {
+		case "Enter":
+			if (text_box0.value !== "") {
+				let counter0 = number_typed_commands
+				let parameters = new Array(3)
+				let counter1 = 0
+				let counter2 = 0
+				let more_than_3_args = false
+				pointer0 = 0
+				do {
+					if (counter1 < 3) {
+						if (text_box0.value[counter0] === ' ') {
+							parameters[counter1] = text_box0.value.substring(counter2, counter0)
+							counter1++
+							counter2 = counter0
+							counter2++
+						}
+						counter0++
+					} else {
+						more_than_3_args = true
+						break
+					}
+				} while (counter0 < text_box0.value.length)
+		        	parameters[counter1] = text_box0.value.substring(counter2, counter0)
+				if (!more_than_3_args) {
+					if (number_typed_commands < 31) {
+						number_typed_commands++
+					}
+					commands_list[0] = text_box0.value
+					do {
+						commands_list[counter0 + 1] = commands_list[counter0]
+						counter0--
+					} while (counter0 !== -1)
+					commands_list[0] = ""
+					switch (parameters[0]) {
+						case "help":
+							let paragrapth0 = document.createElement("p")
+							paragrapth0.innerHTML = "Type \"clear\" to clear most website elements"
+							document.body.appendChild(paragrapth0)
+							break
+						case "clear":
+							document.body.innerHTML = ""
+							document.body.appendChild(text_box0)
+							break
+					}
 				}
+				text_box0.focus()
+				text_box0.value = ""
 			}
 			break
-		case 'ArrowRight':
-			if (cursor_column !== length1 - 1 && cursor_column !== writing_limit_right) {
-                                cells[cursor_row][cursor_column].contentEditable = false
-				cursor_column++
-				cells[cursor_row][cursor_column].contentEditable = true
-				cells[cursor_row][cursor_column].focus()
-                                event.preventDefault()
-			} else {
-				if(cursor_row !== length0 && cursor_column !== writing_limit_right) {
-                                        cells[cursor_row][cursor_column].contentEditable = false
-					cursor_column = 0
-					cursor_row++
-				        cells[cursor_row][cursor_column].contentEditable = true
-					cells[cursor_row][cursor_column].focus()
-                                        event.preventDefault()
-				}
-			}
-			break
-		case 'Delete':
-                        
-			break
-		case 'Backspace':
-                        if (cursor_column !== 0 && cursor_column !== writing_limit_left) {
-                                cells[cursor_row][cursor_column].contentEditable = false
-				cursor_column--
-				cells[cursor_row][cursor_column].contentEditable = true
-				cells[cursor_row][cursor_column].focus()
-                                counter0 = cursor_column
+		case "ArrowUp":
+			if (pointer0 !== number_typed_commands) {
                                 do {
-                                        cells[cursor_row][counter0].innerHTML = cells[cursor_row][counter0 + 1].innerHTML
-                                        counter0++
-                                } while (counter0 !== cursor_column + 1)
-                                writing_limit_right--
-			} else {
-				if(cursor_row !== 0 && cursor_column !== writing_limit_left) {
-                                        cells[cursor_row][cursor_column].contentEditable = false
-					cursor_column = length1 - 1
-					cursor_row--
-					cells[cursor_row][cursor_column].contentEditable = true
-					cells[cursor_row][cursor_column].focus()
-                                        counter0 = cursor_column
-                                        do {
-                                                cells[cursor_row][counter0].innerHTML = cells[cursor_row][counter0 + 1].innerHTML
-                                                counter0++
-                                        } while (counter0 !== cursor_column)
-                                        writing_limit_right--
-                                }
-			}
+                                        pointer0++
+                                } while(commands_list[pointer0] === commands_list[pointer0 + 1])
+                                text_box0.value = commands_list[pointer0]
+                                event.preventDefault()
+                                text_box0.setSelectionRange(text_box0.value.length, text_box0.value.length)
+                        }
 			break
-	}
-	if(event.key.length < 2) {
-		if (cursor_column !== length1 - 1) {
-			cells[cursor_row][cursor_column].contentEditable = false
-                        cells[cursor_row][cursor_column].innerHTML = event.key
-			cursor_column++
-			cells[cursor_row][cursor_column].contentEditable = true
-			cells[cursor_row][cursor_column].focus()
-		} else {
-			if(cursor_row !== length0) {
-				cells[cursor_row][cursor_column].contentEditable = false
-                                cells[cursor_row][cursor_column].innerHTML = event.key
-				cursor_column = 0
-				cursor_row++
-                                writing_limit_row++
-				cells[cursor_row][cursor_column].contentEditable = true
-				cells[cursor_row][cursor_column].focus()
-			}
-		}
-		event.preventDefault()
-		writing_limit_right++
+		case "ArrowDown":
+			if (pointer0 !== 0) {
+                                do {
+                                        pointer0--
+                                } while(commands_list[pointer0] === commands_list[pointer0 - 1])
+                                text_box0.value = commands_list[pointer0]
+                        }
+			break
 	}
 }
